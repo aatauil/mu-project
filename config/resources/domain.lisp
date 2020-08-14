@@ -7,6 +7,24 @@
 
 ;; Describe your resources here
 
+(define-resource book ()
+  :class (s-url "http://schema.org/Book")
+  :properties `((:headline :string ,(s-url "http://schema.org/headline"))
+                (:isbn :string ,(s-url "http://schema.org/isbn")))
+  :has-one `((author :via ,(s-url "http://schema.org/author")
+                    :as "author"))
+  :resource-base (s-url "http://localhost:4200/books/")
+  :on-path "books")
+
+
+(define-resource author ()
+  :class (s-url "http://schema.org/author")
+  :properties `((:familyname :string ,(s-url "http://schema.org/familyName")))
+  :has-many `((book :via ,(s-url "http://schema.org/author") :inverse t :as "books"))
+  :resource-base (s-url "http://localhost:4200/authors/")
+  :on-path "authors")
+
+
 ;; The general structure could be described like this:
 ;;
 ;; (define-resource <name-used-in-this-file> ()

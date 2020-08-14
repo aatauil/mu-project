@@ -12,7 +12,7 @@
 ;; (s-url "http://purl.org/dc/terms/title")
 ;; as (s-prefix "dct:title")
 
-;; (add-prefix "dct" "http://purl.org/dc/terms/")
+(add-prefix "schema" "http://schema.org")
 
 
 ;;;;;
